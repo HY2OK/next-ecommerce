@@ -12,9 +12,11 @@ async function searchProducts(formData: FormData) {
   "use server";
 
   const searchQuery = formData.get("searchQuery")?.toString();
+  console.log(searchQuery);
 
   if (searchQuery) {
-    redirect("/search?query=" + searchQuery);
+    const encodedQuery = encodeURIComponent(searchQuery); // 검색 쿼리를 인코딩
+    redirect("/search?query=" + encodedQuery);
   }
 }
 
